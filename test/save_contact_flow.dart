@@ -64,6 +64,7 @@ void main() {
     await tester.tap(createButton);
     await tester.pumpAndSettle();
 
+    //Foi feito novamente injeção de dependências aqui no contact_form
     final contactsListBack = find.byType(ContactsList);
     expect(contactsListBack, findsOneWidget);
   });
