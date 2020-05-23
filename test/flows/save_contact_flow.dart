@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import 'matchers.dart';
-import 'mocks.dart';
+import '../matchers/matchers.dart';
+import '../mocks/mocks.dart';
 
 void main() {
   testWidgets('Should save a contact', (WidgetTester tester) async {
@@ -67,7 +67,7 @@ void main() {
     final contactsListBack = find.byType(ContactsList);
     expect(contactsListBack, findsOneWidget);
 
-//    Erro, o ContactList não chama novamente o findAll, precisamos transformar em stateless widget. Usei o verifyNever pois o verify estava dando erro
+//    Erro, o ContactList não chama novamente o findAll, precisamos transformar em stateless widget. Usei o verifyNever pois o verify estava dando erro - Não é o certo
     verifyNever(mockContactDao.findAll());
   });
 }
