@@ -1,11 +1,14 @@
 import 'package:bytebank/database/dao/contact_dao.dart';
+import 'package:bytebank/http/webclients/transaction_webclient.dart';
 import 'package:flutter/cupertino.dart';
 
 class AppDependencies extends InheritedWidget {
   final ContactDao contactDao;
+  final TransactionWebClient transactionWebClient;
 
   AppDependencies({
     @required this.contactDao,
+    @required this.transactionWebClient,
     Widget child,
   }) : super(child: child);
 
@@ -14,5 +17,6 @@ class AppDependencies extends InheritedWidget {
 
   @override
   bool updateShouldNotify(AppDependencies oldWidget) =>
-      contactDao != oldWidget.contactDao;
+      contactDao != oldWidget.contactDao ||
+      transactionWebClient != oldWidget.transactionWebClient;
 }

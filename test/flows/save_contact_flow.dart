@@ -45,13 +45,13 @@ void main() {
     expect(contactForm, findsOneWidget);
 //  Feito a injeção de dependencias, vamos continuar
 
-    final nameTextField = find
-        .byWidgetPredicate((widget) => _textFieldMatcher(widget, 'Full name'));
+    final nameTextField = find.byWidgetPredicate(
+        (widget) => textFieldByLabelTextMatcher(widget, 'Full name'));
     expect(nameTextField, findsOneWidget);
     await tester.enterText(nameTextField, "Fábio");
 
     final accountNumberTextField = find.byWidgetPredicate(
-        (widget) => _textFieldMatcher(widget, 'Account number'));
+        (widget) => textFieldByLabelTextMatcher(widget, 'Account number'));
     expect(accountNumberTextField, findsOneWidget);
     await tester.enterText(accountNumberTextField, '1000');
 
@@ -70,11 +70,4 @@ void main() {
 //    Erro, o ContactList não chama novamente o findAll, precisamos transformar em stateless widget. Usei o verifyNever pois o verify estava dando erro - Não é o certo
     verifyNever(mockContactDao.findAll());
   });
-}
-
-bool _textFieldMatcher(Widget widget, String labelText) {
-  if (widget is TextField) {
-    return widget.decoration.labelText == labelText;
-  }
-  return false;
 }
